@@ -64,12 +64,17 @@ Question,Option A,Option B,Option C,Option D,Correct Answer,Comment A,Comment B,
             background-color: #1a1a2e;
             color: var(--white);
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            flex: 1;
+            margin-bottom: 20px;
         }
         
         .game-title {
@@ -300,6 +305,7 @@ Question,Option A,Option B,Option C,Option D,Correct Answer,Comment A,Comment B,
             padding: 10px;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 5px;
+            margin-bottom: 20px;
         }
         
         /* Confetti Animation */
@@ -397,25 +403,26 @@ Question,Option A,Option B,Option C,Option D,Correct Answer,Comment A,Comment B,
         
         .footer {
             position: static;
-            bottom: 15px;
-            right: 15px;
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.6);
-            background-color: rgba(0, 0, 0, 0.4);
-            padding: 8px 12px;
-            border-radius: 4px;
+            color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 12px;
             z-index: 10;
-            text-align: right;
+            text-align: center;
+            margin-top: 40px;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .footer a {
             color: var(--yellow);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: color 0.2s, text-decoration 0.2s;
+            font-weight: bold;
         }
         
         .footer a:hover {
-            color: white;
+            color: var(--white);
             text-decoration: underline;
         }
         
@@ -572,6 +579,7 @@ Question,Option A,Option B,Option C,Option D,Correct Answer,Comment A,Comment B,
             <button class="restart-btn" id="restartBtn">Play Again! 🔄</button>
         </div>
         
+        <!-- Disclaimer section inside the container -->
         <div class="disclaimer">
             DISCLAIMER: This is a study guide made by an LLM. I may hallucinate. Some material may be outside of syllabus. When in doubt, ask Arnab!
         </div>
@@ -584,9 +592,9 @@ Question,Option A,Option B,Option C,Option D,Correct Answer,Comment A,Comment B,
     <div class="emoji-animation" id="happyEmoji">🎉</div>
     <div class="emoji-animation" id="sadEmoji">😢</div>
     
-    <!-- Footer -->
+    <!-- Footer - now outside the container -->
     <div class="footer">
-        &copy; 2025 Anarb Nandi and Keming He | <a href="https://github.com/KemingHe/gameshow-study" target="_blank">GitHub</a> | Apache 2.0
+        &copy; 2025 <a href="https://linkedin.com/in/arnabdotorg" target="_blank" rel="noopener noreferrer">Arnab Nandi</a> and <a href="https://linkedin.com/in/KemingHe" target="_blank" rel="noopener noreferrer">Keming He</a> | <a href="https://github.com/KemingHe/gameshow-study" target="_blank" rel="noopener noreferrer">GitHub</a> | Apache 2.0
     </div>
     
     <script>
