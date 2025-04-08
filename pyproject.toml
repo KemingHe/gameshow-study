@@ -1,6 +1,6 @@
 [project]
 name = "gameshow-study"
-version = "0.1.0"
+version = "0.2.0"
 description = "Turn stressful exam review into an exciting game show."
 authors = [
     {name = "Keming He",email = "keminghe.career@gmail.com"}
