@@ -1,0 +1,25 @@
+Study Game Show Application - Legacy Components
+Copyright (c) 2025 Keming He
+
+The legacy directory of this application is licensed under the Apache License, Version 2.0.
+
+The rest of the project remains under MIT License (see LICENSE file in the project root).
+
+=======================================================================
+
+CHANGES:
+04/07/2025 - Added "Try Demo" functionality to load question bank from GitHub repository
+
+The following modifications were made to legacy/index.html:
+
+1. Added a "Try Demo" button to access sample questions directly
+2. Added styling for the button layout
+3. Added JavaScript function loadDemoData() to fetch CSV data from GitHub
+4. Refactored the game initialization process to share code between file upload and demo data load
+5. Added loading state and error handling for demo data loading
+
+These changes allow users to easily try out the application with sample questions without having to manually download and upload the question bank CSV file.
+
+=======================================================================
+
+Original code was created for Arnab Nandi's CSE 3241 course, enhanced with the demo functionality to improve user experience.

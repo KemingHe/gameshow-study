@@ -94,6 +94,25 @@ Question,Option A,Option B,Option C,Option D,Correct Answer,Comment A,Comment B,
             text-align: center;
             margin-bottom: 20px;
             border: 2px solid var(--red);
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            gap: 20px;
+        }
+        
+        .demo-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .upload-column {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
         }
         
         .file-upload {
@@ -376,6 +395,30 @@ Question,Option A,Option B,Option C,Option D,Correct Answer,Comment A,Comment B,
             100% { opacity: 0; transform: scale(1.5) rotate(-10deg); }
         }
         
+        .footer {
+            position: static;
+            bottom: 15px;
+            right: 15px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 8px 12px;
+            border-radius: 4px;
+            z-index: 10;
+            text-align: right;
+        }
+        
+        .footer a {
+            color: var(--yellow);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
@@ -442,6 +485,33 @@ Question,Option A,Option B,Option C,Option D,Correct Answer,Comment A,Comment B,
             border-radius: 50%;
             margin-right: 10px;
         }
+        
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .demo-btn {
+            background-color: var(--green);
+            height: 100%;
+            padding: 20px;
+            font-size: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+        
+        .demo-btn:hover {
+            background-color: #0b8043;
+        }
+        
+        .demo-btn .emoji {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -455,18 +525,29 @@ Question,Option A,Option B,Option C,Option D,Correct Answer,Comment A,Comment B,
         
         <!-- Upload Section -->
         <div class="upload-section" id="uploadSection">
-            <h2>Upload Your Question CSV File</h2>
-            <p>Get ready for the ultimate Database Systems quiz experience!</p>
-            
-            <label for="csvFile" class="file-label">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
-                </svg>
-                Drop your CSV file here or click to browse
-                <div class="file-name" id="fileName">No file selected</div>
-            </label>
-            <input type="file" id="csvFile" class="file-upload" accept=".csv">
-            <button id="startBtn" class="upload-btn">Start Game Show! 🎬</button>
+            <div class="demo-column">
+                <h3>Try Without Upload</h3>
+                <button id="demoBtn" class="upload-btn demo-btn">
+                    <span class="emoji">🚀</span>
+                    Try Demo
+                </button>
+            </div>
+            <div class="upload-column">
+                <h2>Upload Your Question CSV File</h2>
+                <p>Get ready for the ultimate Database Systems quiz experience!</p>
+                
+                <label for="csvFile" class="file-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+                    </svg>
+                    Drop your CSV file here or click to browse
+                    <div class="file-name" id="fileName">No file selected</div>
+                </label>
+                <input type="file" id="csvFile" class="file-upload" accept=".csv">
+                <div class="button-group">
+                    <button id="startBtn" class="upload-btn">Start Game Show! 🎬</button>
+                </div>
+            </div>
         </div>
         
         <!-- Game Area -->
@@ -503,11 +584,17 @@ Question,Option A,Option B,Option C,Option D,Correct Answer,Comment A,Comment B,
     <div class="emoji-animation" id="happyEmoji">🎉</div>
     <div class="emoji-animation" id="sadEmoji">😢</div>
     
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2025 Anarb Nandi and Keming He | <a href="https://github.com/KemingHe/gameshow-study" target="_blank">GitHub</a> | Apache 2.0
+    </div>
+    
     <script>
         // DOM Elements
         const csvFileInput = document.getElementById('csvFile');
         const fileNameDisplay = document.getElementById('fileName');
         const startBtn = document.getElementById('startBtn');
+        const demoBtn = document.getElementById('demoBtn');
         const uploadSection = document.getElementById('uploadSection');
         const gameArea = document.getElementById('gameArea');
         const questionElement = document.getElementById('question');
@@ -536,6 +623,7 @@ Question,Option A,Option B,Option C,Option D,Correct Answer,Comment A,Comment B,
         // Event Listeners
         csvFileInput.addEventListener('change', handleFileSelect);
         startBtn.addEventListener('click', startGame);
+        demoBtn.addEventListener('click', loadDemoData);
         nextBtn.addEventListener('click', showNextQuestion);
         restartBtn.addEventListener('click', resetGame);
         
@@ -638,35 +726,7 @@ Question,Option A,Option B,Option C,Option D,Correct Answer,Comment A,Comment B,
             const reader = new FileReader();
             
             reader.onload = function(e) {
-                try {
-                    questions = parseCSV(e.target.result);
-                    
-                    if (questions.length === 0) {
-                        alert('No valid questions found in the CSV file! Please check the format.');
-                        return;
-                    }
-                    
-                    // Randomize question order
-                    questions = shuffleArray(questions);
-                    
-                    // Update total questions display
-                    totalQuestionsElement.textContent = questions.length;
-                    
-                    // Hide upload section & show game area
-                    uploadSection.style.display = 'none';
-                    gameArea.style.display = 'block';
-                    
-                    // Reset game state
-                    currentQuestionIndex = 0;
-                    score = 0;
-                    scoreDisplay.textContent = score;
-                    
-                    // Show first question
-                    showQuestion(currentQuestionIndex);
-                } catch (error) {
-                    console.error('Error starting game:', error);
-                    alert('Error processing the CSV file. Please check the format and try again.');
-                }
+                processGameData(e.target.result);
             };
             
             reader.onerror = function() {
@@ -674,6 +734,72 @@ Question,Option A,Option B,Option C,Option D,Correct Answer,Comment A,Comment B,
             };
             
             reader.readAsText(file);
+        }
+        
+        // Load demo data from GitHub
+        function loadDemoData() {
+            // Show loading state
+            demoBtn.textContent = "Loading...";
+            demoBtn.disabled = true;
+            
+            // Fetch the CSV file from GitHub
+            fetch('https://raw.githubusercontent.com/KemingHe/gameshow-study/main/legacy/questionbank.csv')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    processGameData(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching demo data:', error);
+                    alert('Error loading demo data. Please try uploading a file instead.');
+                    // Reset button
+                    demoBtn.innerHTML = '<span class="emoji">🚀</span>Try Demo';
+                    demoBtn.disabled = false;
+                });
+        }
+        
+        // Process CSV data and start game
+        function processGameData(csvData) {
+            try {
+                questions = parseCSV(csvData);
+                
+                if (questions.length === 0) {
+                    alert('No valid questions found in the CSV file! Please check the format.');
+                    return;
+                }
+                
+                // Randomize question order
+                questions = shuffleArray(questions);
+                
+                // Update total questions display
+                totalQuestionsElement.textContent = questions.length;
+                
+                // Hide upload section & show game area
+                uploadSection.style.display = 'none';
+                gameArea.style.display = 'block';
+                
+                // Reset game state
+                currentQuestionIndex = 0;
+                score = 0;
+                scoreDisplay.textContent = score;
+                
+                // Show first question
+                showQuestion(currentQuestionIndex);
+                
+                // Reset demo button if it was used
+                demoBtn.innerHTML = '<span class="emoji">🚀</span>Try Demo';
+                demoBtn.disabled = false;
+            } catch (error) {
+                console.error('Error starting game:', error);
+                alert('Error processing the CSV file. Please check the format and try again.');
+                // Reset demo button if it was used
+                demoBtn.innerHTML = '<span class="emoji">🚀</span>Try Demo';
+                demoBtn.disabled = false;
+            }
         }
         
         // Show a specific question
